@@ -7,16 +7,16 @@ import { CookieService } from 'ngx-cookie-service';
 export class CustomCookieService {
   constructor(private cookieService: CookieService) {}
 
-  setFavoriteStatus(id: string, isFavorite: boolean): void {
+  public setFavoriteStatus(id: string, isFavorite: boolean): void {
     this.cookieService.set(id, JSON.stringify(isFavorite), { expires: 365, path: '/' });
   }
 
-  getFavoriteStatus(id: string): boolean {
+  public getFavoriteStatus(id: string): boolean {
     const cookieValue = this.cookieService.get(id);
     return cookieValue ? JSON.parse(cookieValue) : false;
   }
 
-  getFavoriteIds(): string[] {
+  public getFavoriteIds(): string[] {
     const allCookies = this.cookieService.getAll();
     return Object.keys(allCookies).filter(id => {
       try {

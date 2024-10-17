@@ -6,6 +6,7 @@ import {MovieService} from "../../../shared/services/movie.service";
 import {CustomCookieService} from "../../../shared/services/custom-cookie.service";
 import {MovieOverviewModel} from "../../../models/movies/movies-overview.model";
 import {forkJoin, Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-favorites',
@@ -24,9 +25,16 @@ export class FavoritesComponent {
 
   public favoriteMovies$!: Observable<MovieOverviewModel[]>;
 
-  public constructor(private movieService: MovieService, private customCookieService : CustomCookieService) {
+  public constructor(private movieService: MovieService, private customCookieService : CustomCookieService, private router: Router) {
     const favoriteIds = this.customCookieService.getFavoriteIds();
-    this.favoriteMovies$ = this.getMoviesByIds$(favoriteIds);
+
+    if (favoriteIds.length === 0) {
+      this.router.navigate(['/overview']);
+      return;
+    }
+
+
+      this.favoriteMovies$ = this.getMoviesByIds$(favoriteIds);
   }
 
   public toggleFavorite(movie: MovieOverviewModel) {

@@ -3,6 +3,9 @@ import {MovieService} from "../../../shared/services/movie.service";
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {MovieCardComponent} from "../movie-card/movie-card.component";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {CustomCookieService} from "../../../shared/services/custom-cookie.service";
+import {SharedModule} from "../../../shared/shared.module";
+import {MovieModel} from "../../../models/movies/movies.model";
 
 @Component({
   selector: 'app-overview',
@@ -13,7 +16,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     NgIf,
     NgForOf,
     MovieCardComponent,
-    MatProgressSpinner
+    MatProgressSpinner,
+    SharedModule,
   ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss'
@@ -21,5 +25,9 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 export class OverviewComponent {
 
   public movies$ = this.movieService.getChristopherNolanMoviesWithCillianMurphy$();
-  public constructor(private movieService: MovieService) {}
+  public constructor(private movieService: MovieService, private customCookieService : CustomCookieService) {}
+
+  public toggleFavorite(movie: MovieModel) {
+    this.customCookieService.setFavoriteStatus(movie.id, movie.isFavorite);
+  }
 }

@@ -16,6 +16,8 @@ import {MatList, MatListItem, MatListItemIcon} from "@angular/material/list";
 import {MatIcon} from "@angular/material/icon";
 import {MatLine} from "@angular/material/core";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {MatIconButton} from "@angular/material/button";
+import {CustomCookieService} from "../../../shared/services/custom-cookie.service";
 
 @Component({
   selector: 'app-detail',
@@ -36,7 +38,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatCardSubtitle,
     MatCardTitle,
     NgForOf,
-    MatProgressSpinner
+    MatProgressSpinner,
+    MatIconButton
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
@@ -44,9 +47,13 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 export class DetailComponent {
 
   public movieDetail$!: Observable<MovieDetailModel>;
-  constructor(private route: ActivatedRoute, private movieService: MovieService) {
+  constructor(private route: ActivatedRoute, private movieService: MovieService, private customCookieService: CustomCookieService) {
     const movieId = this.route.snapshot.paramMap.get('id')!;
 
     this.movieDetail$ = this.movieService.getTitleById$(movieId);
+  }
+
+  public setFavoriteStatus(movieId: string, favorite: boolean) {
+    this.customCookieService.setFavoriteStatus(movieId, favorite);
   }
 }

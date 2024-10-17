@@ -3,6 +3,9 @@
     <mat-card-header>
       <mat-card-title>{{ movieDetail.title }}</mat-card-title>
       <mat-card-subtitle>{{ movieDetail.year }}</mat-card-subtitle>
+      <button mat-icon-button (click)="movieDetail.isFavorite = !movieDetail.isFavorite; setFavoriteStatus(movieDetail.id, movieDetail.isFavorite)">
+        <mat-icon>{{movieDetail.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+      </button>
     </mat-card-header>
     <img mat-card-image [src]="movieDetail.image" alt="{{ movieDetail.title }}">
     <mat-card-content>

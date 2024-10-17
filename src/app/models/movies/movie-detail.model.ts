@@ -1,6 +1,7 @@
 import {MovieDetailResponse} from "./movie-detail.response";
 
 export class MovieDetailModel {
+
   constructor(
     public id: string,
     public title: string,
@@ -48,10 +49,11 @@ export class MovieDetailModel {
     public similars: Similar[],
     public tvSeriesInfo: null,
     public tvEpisodeInfo: null,
-    public errorMessage: string
+    public errorMessage: string,
+    public isFavorite = false
   ) {}
 
-  static fromApi(response: MovieDetailResponse): MovieDetailModel {
+  static fromApi(response: MovieDetailResponse, isFavorite = false): MovieDetailModel {
     return new MovieDetailModel(
       response.id,
       response.title,
@@ -99,7 +101,8 @@ export class MovieDetailModel {
       response.similars,
       response.tvSeriesInfo,
       response.tvEpisodeInfo,
-      response.errorMessage
+      response.errorMessage,
+      isFavorite
     );
   }
 }

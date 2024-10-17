@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output, output} from '@angular/core';
 import {MovieModel} from "../../../models/movies/movies.model";
 import {MatCard, MatCardActions, MatCardHeader, MatCardImage, MatCardTitle} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
@@ -28,10 +28,11 @@ export class MovieCardComponent {
 
   @Input() public movie!: MovieModel;
 
-  public isFavorite: boolean = false;
+  @Output() public favoriteToggled = new EventEmitter<MovieModel>();
 
   toggleFavorite() {
-    this.isFavorite = !this.isFavorite;
+    this.movie.isFavorite = !this.movie.isFavorite;
+    this.favoriteToggled.emit(this.movie);
   }
 
 }

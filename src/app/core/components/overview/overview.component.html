@@ -1,6 +1,6 @@
 <div *ngIf="movies$ | async as movies else loading">
   <div *ngFor="let movie of movies">
-    <app-movie-card [movie]="movie"></app-movie-card>
+    <app-movie-card [movie]="movie" (favoriteToggled)="toggleFavorite($event)"></app-movie-card>
   </div>
 </div>
 

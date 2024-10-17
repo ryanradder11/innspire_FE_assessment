@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from './services/movie.service';
+import {CustomCookieService} from "./services/custom-cookie.service";
 
 @NgModule({
   imports: [
@@ -9,10 +10,11 @@ import { MovieService } from './services/movie.service';
     HttpClientModule
   ],
   providers: [
-    MovieService
+    MovieService,
+    CustomCookieService
   ],
   exports: [
-    HttpClientModule
+    HttpClientModule,
   ]
 })
 export class SharedModule { }

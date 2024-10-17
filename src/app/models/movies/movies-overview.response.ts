@@ -1,11 +1,11 @@
 export interface MoviesOverviewResponse {
   searchType: string,
   expression: string,
-  results: MovieResponse[],
+  results: MovieSummaryResponse[],
   errorMessage: string
 }
 
-export interface MovieResponse{
+export interface MovieSummaryResponse {
   id: string,
   resultType: string,
   image: string,

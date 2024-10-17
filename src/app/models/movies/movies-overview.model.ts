@@ -1,4 +1,4 @@
-import {MovieResponse} from "./movies-overview.response";
+import {MovieSummaryResponse} from "./movies-overview.response";
 
 export class MovieOverviewModel {
   public id: string;
@@ -17,7 +17,7 @@ export class MovieOverviewModel {
     this.isFavorite = isFavorite;
   }
 
-  public static fromApi(response: MovieResponse, isFavorite = false): MovieOverviewModel {
+  public static fromApi(response: MovieSummaryResponse, isFavorite = false): MovieOverviewModel {
     return new MovieOverviewModel(
       response.id,
       response.resultType,

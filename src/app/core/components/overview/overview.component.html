@@ -1,1 +1,12 @@
-<p>overview works!</p>
+<h1>overview works!</h1>
+
+<div *ngIf="movies$ | async as movies else loading">
+  <div *ngFor="let movie of movies">
+    <img [src]="movie.image" alt="movie.title" />
+    <p>{{ movie.title }}</p>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

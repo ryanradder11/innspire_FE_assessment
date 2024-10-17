@@ -12,11 +12,12 @@ export class MovieService {
 
   constructor(private http: HttpClient) {}
 
-   public getChristopherNolanMoviesWithCillianMurphy(director ='Christopher Nolan', actor ='Cillian Murphy'): Observable<MovieModel[]> {
+   public getChristopherNolanMoviesWithCillianMurphy$(director ='Christopher Nolan', actor ='Cillian Murphy'): Observable<MovieModel[]> {
     const params = new HttpParams();
+    const expression = `director:${director} AND actor:${actor}`;
 
-    return this.http.get<MoviesResponse>(`${this.apiBaseUrl}/Search/${this.apiKey}`, { params }).pipe(
-      map(response => response.results as MovieModel[])
+    return this.http.get<MoviesResponse>(`${this.apiBaseUrl}/Search/${this.apiKey}/${expression}`, { params }).pipe(
+      map(response => response.results.map(movieResponse => MovieModel.fromApi(movieResponse)))
     );
   }
 }

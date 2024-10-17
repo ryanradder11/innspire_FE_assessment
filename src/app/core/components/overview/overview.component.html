@@ -2,8 +2,7 @@
 
 <div *ngIf="movies$ | async as movies else loading">
   <div *ngFor="let movie of movies">
-    <img [src]="movie.image" alt="movie.title" />
-    <p>{{ movie.title }}</p>
+    <app-movie-card [movie]="movie"></app-movie-card>
   </div>
 </div>
 

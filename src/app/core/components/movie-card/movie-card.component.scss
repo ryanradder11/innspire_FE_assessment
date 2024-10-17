@@ -1,0 +1,15 @@
+mat-card {
+  max-width: 400px;
+  margin: 20px;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-card-image {
+  height: 200px;
+  object-fit: cover;
+}

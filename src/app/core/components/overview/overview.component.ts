@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MovieService} from "../../../shared/services/movie.service";
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {MovieCardComponent} from "../movie-card/movie-card.component";
 
 @Component({
   selector: 'app-overview',
@@ -9,7 +10,8 @@ import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
     AsyncPipe,
     JsonPipe,
     NgIf,
-    NgForOf
+    NgForOf,
+    MovieCardComponent
   ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss'

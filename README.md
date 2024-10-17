@@ -49,19 +49,21 @@ We will spend 60 minutes at yout interview with you. This will include:
 ## How to Start the Application
 Copy Environment Configuration: Copy the contents of src/environments/environment.ts to src/environments/environment.development.ts and fill in the apiKey with your IMDB API key.  
 
+```typescript
 export const environment = {
-production: false,
-apiBaseUrl: 'https://tv-api.com/en/API',
-apiKey: 'your_api_key_here'
+  production: false,
+  apiBaseUrl: 'https://tv-api.com/en/API',
+  apiKey: 'your_api_key_here'
 };
+```
 
 ## Install Dependencies: Run the following command to install the necessary dependencies:  
 
-npm install
+- npm install
 
 ## Serve the Application: Use the Angular CLI to serve the application:  
 
-ng serve
+- ng serve
 
 ## Access the Application: Open your browser and navigate to http://localhost:4200 to view the application.
 

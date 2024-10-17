@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {SharedModule} from "../../../shared/shared.module";
-import {TopMenuComponent} from "../top-menu/top-menu.component";
+import {SharedModule} from "../../shared/shared.module";
+import {TopMenuComponent} from "../components/top-menu/top-menu.component";
 
 @NgModule({
   declarations: [

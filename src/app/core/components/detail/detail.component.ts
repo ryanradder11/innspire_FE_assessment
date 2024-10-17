@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {MovieService} from "../../../shared/services/movie.service";
-import {AsyncPipe, JsonPipe, NgIf} from "@angular/common";
+import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {MovieDetailModel} from "../../../models/movies/movie-detail.model";
 import {Observable} from "rxjs";
 import {
@@ -15,6 +15,7 @@ import {
 import {MatList, MatListItem, MatListItemIcon} from "@angular/material/list";
 import {MatIcon} from "@angular/material/icon";
 import {MatLine} from "@angular/material/core";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-detail',
@@ -33,7 +34,9 @@ import {MatLine} from "@angular/material/core";
     MatCardImage,
     MatListItemIcon,
     MatCardSubtitle,
-    MatCardTitle
+    MatCardTitle,
+    NgForOf,
+    MatProgressSpinner
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'

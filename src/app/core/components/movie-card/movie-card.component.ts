@@ -4,6 +4,7 @@ import {MatCard, MatCardActions, MatCardHeader, MatCardImage, MatCardTitle} from
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-movie-card',
@@ -18,6 +19,7 @@ import {RouterLink} from "@angular/router";
     MatButton,
     MatCardTitle,
     RouterLink,
+    NgIf,
   ],
   templateUrl: './movie-card.component.html',
   styleUrl: './movie-card.component.scss'

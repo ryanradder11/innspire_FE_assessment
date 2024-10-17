@@ -5,7 +5,7 @@
       <mat-icon>{{ isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
     </button>
   </mat-card-header>
-  <img mat-card-image [src]="movie.image" alt="{{ movie.title }}" />
+  <img *ngIf="movie.image" mat-card-image [src]="movie.image" alt="{{ movie.title }}" />
   <mat-card-actions>
     <button [routerLink]="['/detail', movie.id]" mat-button>Details</button>
   </mat-card-actions>

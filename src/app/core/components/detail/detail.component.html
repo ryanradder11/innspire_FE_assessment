@@ -11,12 +11,12 @@
         <mat-list-item >
           <mat-icon matListItemIcon>person</mat-icon>
           <div matListItemTitle>Directors</div>
-          <div matListItemLine>{{ movieDetail.directors }}</div>
+          <div *ngFor="let director of movieDetail.directorList" matListItemLine>{{ director.name }}</div>
         </mat-list-item>
         <mat-list-item>
           <mat-icon matListItemIcon>star</mat-icon>
           <div class="mat-line">Stars</div>
-          <div class="mat-line">{{ movieDetail.stars }}</div>
+          <div *ngFor="let star of movieDetail.starList" class="mat-line">{{ star.name }}</div>
         </mat-list-item>
         <mat-list-item>
           <mat-icon matListItemIcon>schedule</mat-icon>
@@ -33,10 +33,31 @@
           <div class="mat-line">IMDb Rating</div>
           <div class="mat-line">{{ movieDetail.imDbRating }}</div>
         </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>emoji_events</mat-icon>
+          <div class="mat-line">Awards</div>
+          <div class="mat-line">{{ movieDetail.awards }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="movieDetail.languageList.length > 0">
+          <mat-icon matListItemIcon>language</mat-icon>
+          <div class="mat-line">Languages</div>
+          <div *ngFor="let language of movieDetail.languageList" class="mat-line">{{ language.value }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="movieDetail.companyList.length > 0">
+          <mat-icon matListItemIcon>business</mat-icon>
+          <div class="mat-line">Companies</div>
+          <div *ngFor="let company of movieDetail.companyList" class="mat-line">{{ company.name }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="movieDetail.countryList.length > 0">
+          <mat-icon matListItemIcon>flag</mat-icon>
+          <div class="mat-line">Countries</div>
+          <div *ngFor="let country of movieDetail.countryList" class="mat-line">{{ country.value }}</div>
+        </mat-list-item>
+
       </mat-list>
     </mat-card-content>
   </mat-card>
 </ng-container>
 <ng-template #loading>
-  <p>Loading...</p>
+  <mat-spinner></mat-spinner>
 </ng-template>

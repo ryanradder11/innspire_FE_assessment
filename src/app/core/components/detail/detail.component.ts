@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MovieService} from "../../../shared/services/movie.service";
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {MovieDetailModel} from "../../../models/movies/movie-detail.model";
@@ -47,8 +47,13 @@ import {CustomCookieService} from "../../../shared/services/custom-cookie.servic
 export class DetailComponent {
 
   public movieDetail$!: Observable<MovieDetailModel>;
-  constructor(private route: ActivatedRoute, private movieService: MovieService, private customCookieService: CustomCookieService) {
+  constructor(private route: ActivatedRoute, private movieService: MovieService, private customCookieService: CustomCookieService, private router: Router) {
     const movieId = this.route.snapshot.paramMap.get('id')!;
+
+    if (!movieId) {
+      this.router.navigate(['/overview']);
+      return;
+    }
 
     this.movieDetail$ = this.movieService.getTitleById$(movieId);
   }

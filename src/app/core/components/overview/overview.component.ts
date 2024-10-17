@@ -5,7 +5,7 @@ import {MovieCardComponent} from "../movie-card/movie-card.component";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {CustomCookieService} from "../../../shared/services/custom-cookie.service";
 import {SharedModule} from "../../../shared/shared.module";
-import {MovieModel} from "../../../models/movies/movies.model";
+import {MovieOverviewModel} from "../../../models/movies/movies-overview.model";
 
 @Component({
   selector: 'app-overview',
@@ -27,7 +27,7 @@ export class OverviewComponent {
   public movies$ = this.movieService.getChristopherNolanMoviesWithCillianMurphy$();
   public constructor(private movieService: MovieService, private customCookieService : CustomCookieService) {}
 
-  public toggleFavorite(movie: MovieModel) {
+  public toggleFavorite(movie: MovieOverviewModel) {
     this.customCookieService.setFavoriteStatus(movie.id, movie.isFavorite);
   }
 }

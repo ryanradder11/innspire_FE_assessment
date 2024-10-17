@@ -1,4 +1,4 @@
-export interface MoviesResponse{
+export interface MoviesOverviewResponse {
   searchType: string,
   expression: string,
   results: MovieResponse[],

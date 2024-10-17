@@ -1,9 +1,9 @@
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {map, Observable} from "rxjs";
-import {MovieModel} from "../../models/movies/movies.model";
+import {MovieOverviewModel} from "../../models/movies/movies-overview.model";
 import {Injectable} from "@angular/core";
 import {environment} from '../../../environments/environment';
-import {MoviesResponse} from "../../models/movies/movies.response";
+import {MoviesOverviewResponse} from "../../models/movies/movies-overview.response";
 import {MovieDetailModel} from "../../models/movies/movie-detail.model";
 import {CustomCookieService} from "./custom-cookie.service";
 
@@ -14,15 +14,15 @@ export class MovieService {
 
   constructor(private http: HttpClient, private customCookieService: CustomCookieService) {}
 
-  public getChristopherNolanMoviesWithCillianMurphy$(director ='Christopher Nolan', actor ='Cillian Murphy'): Observable<MovieModel[]> {
+  public getChristopherNolanMoviesWithCillianMurphy$(director ='Christopher Nolan', actor ='Cillian Murphy'): Observable<MovieOverviewModel[]> {
     const params = new HttpParams();
     const expression = `${director}`;
 
-    return this.http.get<MoviesResponse>(`${this.apiBaseUrl}/SearchMovie/${this.apiKey}/${expression}`, { params }).pipe(
+    return this.http.get<MoviesOverviewResponse>(`${this.apiBaseUrl}/SearchMovie/${this.apiKey}/${expression}`, { params }).pipe(
       map(response => response.results.map(
         movieResponse => {
           const isFavorite = this.customCookieService.getFavoriteStatus(movieResponse.id);
-          return MovieModel.fromApi(movieResponse, isFavorite)})
+          return MovieOverviewModel.fromApi(movieResponse, isFavorite)})
       ));
   }
 

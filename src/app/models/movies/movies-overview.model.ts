@@ -1,6 +1,6 @@
-import {MovieResponse} from "./movies.response";
+import {MovieResponse} from "./movies-overview.response";
 
-export class MovieModel {
+export class MovieOverviewModel {
   public id: string;
   public resultType: string;
   public image: string;
@@ -17,8 +17,8 @@ export class MovieModel {
     this.isFavorite = isFavorite;
   }
 
-  public static fromApi(response: MovieResponse, isFavorite = false): MovieModel {
-    return new MovieModel(
+  public static fromApi(response: MovieResponse, isFavorite = false): MovieOverviewModel {
+    return new MovieOverviewModel(
       response.id,
       response.resultType,
       response.image,

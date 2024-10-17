@@ -4,7 +4,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MovieCardComponent} from "../movie-card/movie-card.component";
 import {MovieService} from "../../../shared/services/movie.service";
 import {CustomCookieService} from "../../../shared/services/custom-cookie.service";
-import {MovieModel} from "../../../models/movies/movies.model";
+import {MovieOverviewModel} from "../../../models/movies/movies-overview.model";
 import {forkJoin, Observable} from "rxjs";
 
 @Component({
@@ -22,18 +22,18 @@ import {forkJoin, Observable} from "rxjs";
 })
 export class FavoritesComponent {
 
-  public favoriteMovies$!: Observable<MovieModel[]>;
+  public favoriteMovies$!: Observable<MovieOverviewModel[]>;
 
   public constructor(private movieService: MovieService, private customCookieService : CustomCookieService) {
     const favoriteIds = this.customCookieService.getFavoriteIds();
     this.favoriteMovies$ = this.getMoviesByIds$(favoriteIds);
   }
 
-  public toggleFavorite(movie: MovieModel) {
+  public toggleFavorite(movie: MovieOverviewModel) {
     this.customCookieService.setFavoriteStatus(movie.id, movie.isFavorite);
   }
 
-  private getMoviesByIds$(ids: string[]): Observable<MovieModel[]> {
+  private getMoviesByIds$(ids: string[]): Observable<MovieOverviewModel[]> {
     const movieObservables = ids.map(id => this.movieService.getTitleById$(id));
     return forkJoin(movieObservables);
   }

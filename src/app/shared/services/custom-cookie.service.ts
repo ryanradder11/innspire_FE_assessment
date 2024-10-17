@@ -15,4 +15,15 @@ export class CustomCookieService {
     const cookieValue = this.cookieService.get(id);
     return cookieValue ? JSON.parse(cookieValue) : false;
   }
+
+  getFavoriteIds(): string[] {
+    const allCookies = this.cookieService.getAll();
+    return Object.keys(allCookies).filter(id => {
+      try {
+        return JSON.parse(allCookies[id]) === true;
+      } catch (e) {
+        return false;
+      }
+    });
+  }
 }

@@ -10,12 +10,14 @@ mat-card {
   align-items: center;
 }
 
-mat-card-image {
-  width: 50%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px;
-}
 
+.plot{
+  margin: 20px;
+  font: italic 1em/1.5em "Helvetica Neue", Arial, sans-serif;
+  max-width: 400px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 

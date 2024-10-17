@@ -1,1 +1,9 @@
-<p>favorites works!</p>
+<div *ngIf="favoriteMovies$ | async as movies else loading">
+  <div *ngFor="let movie of movies">
+    <app-movie-card [movie]="movie" (favoriteToggled)="toggleFavorite($event)"></app-movie-card>
+  </div>
+</div>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

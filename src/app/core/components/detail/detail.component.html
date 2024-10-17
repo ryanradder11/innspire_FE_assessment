@@ -7,9 +7,9 @@
         <mat-icon>{{movieDetail.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
       </button>
     </mat-card-header>
-    <img mat-card-image [src]="movieDetail.image" alt="{{ movieDetail.title }}">
+    <img [width]="300" mat-card-image [src]="movieDetail.image" alt="{{ movieDetail.title }}">
     <mat-card-content>
-      <p>{{ movieDetail.plot }}</p>
+      <p class="plot">{{ movieDetail.plot }}</p>
       <mat-list>
         <mat-list-item >
           <mat-icon matListItemIcon>person</mat-icon>

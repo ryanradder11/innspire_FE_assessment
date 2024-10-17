@@ -1,1 +1,42 @@
-<p>detail works!</p>
+<ng-container *ngIf="movieDetail$ | async as movieDetail; else loading">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ movieDetail.title }}</mat-card-title>
+      <mat-card-subtitle>{{ movieDetail.year }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="movieDetail.image" alt="{{ movieDetail.title }}">
+    <mat-card-content>
+      <p>{{ movieDetail.plot }}</p>
+      <mat-list>
+        <mat-list-item >
+          <mat-icon matListItemIcon>person</mat-icon>
+          <div matListItemTitle>Directors</div>
+          <div matListItemLine>{{ movieDetail.directors }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>star</mat-icon>
+          <div class="mat-line">Stars</div>
+          <div class="mat-line">{{ movieDetail.stars }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>schedule</mat-icon>
+          <div class="mat-line">Runtime</div>
+          <div class="mat-line">{{ movieDetail.runtimeStr }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>calendar_today</mat-icon>
+          <div class="mat-line">Release Date</div>
+          <div class="mat-line">{{ movieDetail.releaseDate }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>grade</mat-icon>
+          <div class="mat-line">IMDb Rating</div>
+          <div class="mat-line">{{ movieDetail.imDbRating }}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

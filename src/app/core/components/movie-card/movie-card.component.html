@@ -7,6 +7,6 @@
   </mat-card-header>
   <img mat-card-image [src]="movie.image" alt="{{ movie.title }}" />
   <mat-card-actions>
-    <button mat-button>Details</button>
+    <button [routerLink]="['/detail', movie.id]" mat-button>Details</button>
   </mat-card-actions>
 </mat-card>

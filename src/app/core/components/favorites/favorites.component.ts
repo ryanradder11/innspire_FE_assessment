@@ -7,6 +7,7 @@ import {CustomCookieService} from "../../../shared/services/custom-cookie.servic
 import {MovieOverviewModel} from "../../../models/movies/movies-overview.model";
 import {forkJoin, Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {MovieDetailModel} from "../../../models/movies/movie-detail.model";
 
 @Component({
   selector: 'app-favorites',
@@ -23,7 +24,7 @@ import {Router} from "@angular/router";
 })
 export class FavoritesComponent {
 
-  public favoriteMovies$!: Observable<MovieOverviewModel[]>;
+  public favoriteMovies$!: Observable<MovieDetailModel[]>;
 
   public constructor(private movieService: MovieService, private customCookieService : CustomCookieService, private router: Router) {
     const favoriteIds = this.customCookieService.getFavoriteIds();
@@ -41,7 +42,7 @@ export class FavoritesComponent {
     this.customCookieService.setFavoriteStatus(movie.id, movie.isFavorite);
   }
 
-  private getMoviesByIds$(ids: string[]): Observable<MovieOverviewModel[]> {
+  private getMoviesByIds$(ids: string[]): Observable<MovieDetailModel[]> {
     const movieObservables = ids.map(id => this.movieService.getTitleById$(id));
     return forkJoin(movieObservables);
   }

@@ -5,6 +5,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {MovieDetailModel} from "../../../models/movies/movie-detail.model";
 
 @Component({
   selector: 'app-movie-card',
@@ -26,8 +27,13 @@ import {NgIf} from "@angular/common";
 })
 export class MovieCardComponent {
 
-  @Input() public movie!: MovieOverviewModel;
-
+  @Input({transform: (value: MovieDetailModel | MovieOverviewModel): MovieOverviewModel => {
+   if (value instanceof MovieDetailModel) {
+    return new MovieOverviewModel(value.id, '', value.image, value.title, value.plot, value.isFavorite) ;
+  } else {
+    return value;
+   }}
+  }) public movie!: MovieOverviewModel;
   @Output() public favoriteToggled = new EventEmitter<MovieOverviewModel>();
 
   toggleFavorite() {

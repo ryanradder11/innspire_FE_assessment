@@ -29,7 +29,7 @@ export class MovieService {
     );
   }
 
-  public getTitleById$(id: string): Observable<any> {
+  public getTitleById$(id: string): Observable<MovieDetailModel> {
     return this.http.get<MovieDetailModel>(`${this.apiBaseUrl}/Title/${this.apiKey}/${id}`).pipe(
       map(response => {
         const isFavorite = this.customCookieService.getFavoriteStatus(response.id);

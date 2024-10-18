@@ -24,7 +24,7 @@ import {MovieOverviewModel} from "../../../models/movies/movies-overview.model";
 })
 export class OverviewComponent {
 
-  public movies$ = this.movieService.getChristopherNolanMoviesWithCillianMurphy$();
+  public movies$ = this.movieService.getChristopherNolanMovies$();
   public constructor(private movieService: MovieService, private customCookieService : CustomCookieService) {}
 
   public toggleFavorite(movie: MovieOverviewModel) {

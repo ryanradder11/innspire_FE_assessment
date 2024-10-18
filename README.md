@@ -57,15 +57,22 @@ export const environment = {
 };
 ```
 
-## Install Dependencies: Run the following command to install the necessary dependencies:  
+### Install Dependencies: Run the following command to install the necessary dependencies:  
 
 - npm install
 
-## Serve the Application: Use the Angular CLI to serve the application:  
+
+### Serve the Application: Use the Angular CLI to serve the application:  
 
 - ng serve
 
-## Access the Application: Open your browser and navigate to http://localhost:4200 to view the application.
+### Access the Application: Open your browser and navigate to http://localhost:4200 to view the application.
+
+### todo list
+1. add eslint rules
+2. add more unit tests
+3. fix list-item styling bug
+4. add polymorphism for detailModel / overviewModel overlap
 
 
 

@@ -1,5 +1,5 @@
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {catchError, map, Observable, throwError} from "rxjs";
 import {MovieOverviewModel} from "../../models/movies/movies-overview.model";
 import {Injectable} from "@angular/core";
 import {environment} from '../../../environments/environment';
@@ -14,24 +14,30 @@ export class MovieService {
 
   constructor(private http: HttpClient, private customCookieService: CustomCookieService) {}
 
-  public getChristopherNolanMoviesWithCillianMurphy$(director ='Christopher Nolan', actor ='Cillian Murphy'): Observable<MovieOverviewModel[]> {
-    const params = new HttpParams();
+  public getChristopherNolanMovies$(director ='Christopher Nolan'): Observable<MovieOverviewModel[]> {
     const expression = `${director}`;
 
-    return this.http.get<MoviesOverviewResponse>(`${this.apiBaseUrl}/SearchMovie/${this.apiKey}/${expression}`, { params }).pipe(
-      map(response => response.results.map(
-        movieResponse => {
-          const isFavorite = this.customCookieService.getFavoriteStatus(movieResponse.id);
-          return MovieOverviewModel.fromApi(movieResponse, isFavorite)})
-      ));
+    return this.http.get<MoviesOverviewResponse>(`${this.apiBaseUrl}/SearchMovie/${this.apiKey}/${expression}`).pipe(
+      map(response => response.results.map(movieResponse => {
+        const isFavorite = this.customCookieService.getFavoriteStatus(movieResponse.id);
+        return MovieOverviewModel.fromApi(movieResponse, isFavorite);
+      })),
+      catchError(error => {
+        console.error('Error fetching movies:', error);
+        return throwError(() => new Error('Error fetching movies'));
+      })
+    );
   }
 
   public getTitleById$(id: string): Observable<any> {
-    const params = new HttpParams();
-    return this.http.get<MovieDetailModel>(`${this.apiBaseUrl}/Title/${this.apiKey}/${id}`, { params }).pipe(
+    return this.http.get<MovieDetailModel>(`${this.apiBaseUrl}/Title/${this.apiKey}/${id}`).pipe(
       map(response => {
         const isFavorite = this.customCookieService.getFavoriteStatus(response.id);
-        return MovieDetailModel.fromApi(response, isFavorite)
+        return MovieDetailModel.fromApi(response, isFavorite);
+      }),
+      catchError(error => {
+        console.error('Error fetching movie details:', error);
+        return throwError(() => new Error('Error fetching movie details'));
       })
     );
   }
